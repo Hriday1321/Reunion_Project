@@ -1,17 +1,21 @@
 import React from 'react'
 import { dummy } from '../../utils/dummy';
+import { filter } from '../../utils/filter';
 
 function Body() {
   const [date, setDate] = React.useState('');
   const [loc, setLoc] = React.useState('');
   const [price, setPrice] = React.useState('0');
   const [prop, setProp] = React.useState('');
+  const [filtered, setFiltered] = React.useState([...dummy]);
+  const [search, setSearch] = React.useState('')
 
   return (
     <div>
         <div>
             <span>Search Properties to Rent</span>
-            <input placeholder='Search here'></input>
+            <input placeholder='Search here' onChange={(e) => {setSearch(e.target.value)}}></input>
+            <button onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</button>
         </div>
         <div>
             <span>
@@ -20,7 +24,12 @@ function Body() {
             </span>
             <span>
                 <div>When</div>
-                <input type='date' onChange={(e) => {setDate(new Date(e.target.value))}}></input>
+                <input type='date' onChange={(e) => {
+                    if(e.target.value !== '')
+                        setDate(new Date(e.target.value))
+                    else
+                        setDate(e.target.value)
+                }}></input>
             </span>
             <span>
                 <div>Price</div>
@@ -40,12 +49,13 @@ function Body() {
                     <option value='Office'>Office</option>
                 </select>
             </span>
+            <button onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</button>
         </div>
         {date===''? 'empty': (date.getTime())}
         {loc}
         {price}
         {prop}
-        {dummy.map(function(data){
+        {filtered.map(function(data){
             return (
                 <div>
                     {data.price}
@@ -53,6 +63,7 @@ function Body() {
                     {data.location}
                     {data.movein.getTime()}
                     {data.type}
+                    {data.name}
                 </div>
             )
         })}
