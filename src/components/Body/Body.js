@@ -1,6 +1,7 @@
 import React from 'react'
 import { dummy } from '../../utils/dummy';
 import { filter } from '../../utils/filter';
+import { DivT, SpanT, Input1, S, DivF } from './Body.elements';
 
 function Body() {
   const [date, setDate] = React.useState('');
@@ -12,12 +13,12 @@ function Body() {
 
   return (
     <div>
-        <div>
-            <span>Search Properties to Rent</span>
-            <input placeholder='Search here' onChange={(e) => {setSearch(e.target.value)}}></input>
-            <button onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</button>
-        </div>
-        <div>
+        <DivT>
+            <SpanT>Search Properties to Rent</SpanT>
+            <Input1 placeholder='Search here' onChange={(e) => {setSearch(e.target.value)}}></Input1>
+            <S onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</S>
+        </DivT>
+        <DivF>
             <span>
                 <div>Location</div>
                 <input placeholder='New Delhi, IN' onChange={(e) => {setLoc(e.target.value)}}></input>
@@ -50,7 +51,7 @@ function Body() {
                 </select>
             </span>
             <button onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</button>
-        </div>
+        </DivF>
         {date===''? 'empty': (date.getTime())}
         {loc}
         {price}
