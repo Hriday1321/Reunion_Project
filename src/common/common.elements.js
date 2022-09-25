@@ -13,6 +13,6 @@ export const Side = styled.div`
 
 export const Main = styled.div`
     flex: 0.8;
-    background-color: #333;
-    color: white;
+    background-color: white;
+    color: #333;
 `

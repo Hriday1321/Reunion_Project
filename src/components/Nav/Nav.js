@@ -1,5 +1,5 @@
 import React from 'react'
-import { Div, Ref, H } from './Nav.elements'
+import { Div, DivB, Ref, H, Select, Option, L, S } from './Nav.elements'
 import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
 
 function Nav() {
@@ -10,21 +10,21 @@ function Nav() {
         <Div><Ref to={'/buy'}>Buy</Ref></Div>
         <Div><Ref to={'/sell'}>Sell</Ref></Div>
         <Div>
-            <select>
-                <option value="Manage Properties">Manage Properties</option>
-                <option value="Edit">Edit Properties</option>
-            </select>
+            <Select>
+                <Option value="Manage Properties">Manage Properties</Option>
+                <Option value="Edit">Edit Properties</Option>
+            </Select>
         </Div>
         <Div>
-            <select>
-                <option value="Resources">Resources</option>
-                <option value="Docs">Documentation</option>
-            </select>
+            <Select>
+                <Option value="Resources">Resources</Option>
+                <Option value="Docs">Documentation</Option>
+            </Select>
         </Div>
-        <Div>
-            <button>Login</button>
-            <button>Sign Up</button>
-        </Div>
+        <DivB>
+            <L>Login</L>
+            <S>Sign Up</S>
+        </DivB>
     </div>
   )
 }
