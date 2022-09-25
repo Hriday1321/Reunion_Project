@@ -64,6 +64,7 @@ function Body() {
                     {data.movein.getTime()}
                     {data.type}
                     {data.name}
+                    <img src={data.image} alt='#' width='50px'/>
                 </div>
             )
         })}
