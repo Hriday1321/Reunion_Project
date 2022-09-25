@@ -1,7 +1,7 @@
 import React from 'react'
 import { dummy } from '../../utils/dummy';
 import { filter } from '../../utils/filter';
-import { DivT, SpanT, Input1, S, DivF } from './Body.elements';
+import { DivT, SpanT, Input1, S, DivF, SpanF, DivL, Input2, Select, S2, Grid } from './Body.elements';
 
 function Body() {
   const [date, setDate] = React.useState('');
@@ -19,43 +19,40 @@ function Body() {
             <S onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</S>
         </DivT>
         <DivF>
-            <span>
-                <div>Location</div>
-                <input placeholder='New Delhi, IN' onChange={(e) => {setLoc(e.target.value)}}></input>
-            </span>
-            <span>
-                <div>When</div>
-                <input type='date' onChange={(e) => {
+            <SpanF>
+                <DivL>Location</DivL>
+                <Input2 placeholder='New Delhi, IN' onChange={(e) => {setLoc(e.target.value)}}></Input2>
+            </SpanF>
+            <SpanF>
+                <DivL>When</DivL>
+                <Input2 type='date' onChange={(e) => {
                     if(e.target.value !== '')
                         setDate(new Date(e.target.value))
                     else
                         setDate(e.target.value)
-                }}></input>
-            </span>
-            <span>
-                <div>Price</div>
-                <select onChange={(e) => {setPrice(e.target.value)}}>
+                }}></Input2>
+            </SpanF>
+            <SpanF>
+                <DivL>Price</DivL>
+                <Select onChange={(e) => {setPrice(e.target.value)}}>
                     <option value='0'>Any</option>
                     <option value='1'>$500-$2500</option>
                     <option value='2'>$2500-$5000</option>
                     <option value='3'>$5000-$10000</option>
-                </select>
-            </span>
-            <span>
-                <div>Property Type</div>
-                <select onChange={(e) => {setProp(e.target.value)}}>
+                </Select>
+            </SpanF>
+            <SpanF>
+                <DivL>Property Type</DivL>
+                <Select onChange={(e) => {setProp(e.target.value)}}>
                     <option value=''>All</option>
                     <option value='House'>House</option>
                     <option value='Factory'>Factory</option>
                     <option value='Office'>Office</option>
-                </select>
-            </span>
-            <button onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</button>
+                </Select>
+            </SpanF>
+            <S2 onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</S2>
         </DivF>
-        {date===''? 'empty': (date.getTime())}
-        {loc}
-        {price}
-        {prop}
+        <Grid>
         {filtered.map(function(data){
             return (
                 <div>
@@ -69,6 +66,7 @@ function Body() {
                 </div>
             )
         })}
+        </Grid>
     </div>
   )
 }

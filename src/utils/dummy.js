@@ -28,4 +28,13 @@ export const dummy = [{
     type: 'Office',
     name: 'Golf Apartments',
     image: three
+},
+{
+    price: 2000,
+    address: 'A21 Building Block',
+    location: 'Punjab, IN',
+    movein: new Date('2022-09-14'),
+    type: 'Factory',
+    name: 'Hallowed Land',
+    image: two
 }];
