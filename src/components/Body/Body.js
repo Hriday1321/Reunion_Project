@@ -3,6 +3,14 @@ import { dummy } from '../../utils/dummy';
 import { filter } from '../../utils/filter';
 import { DivT, SpanT, Input1, S, DivF, SpanF, DivL, Input2, Select, S2, Grid } from './Body.elements';
 
+import SearchIcon from '@mui/icons-material/Search';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 function Body() {
   const [date, setDate] = React.useState('');
   const [loc, setLoc] = React.useState('');
@@ -50,20 +58,36 @@ function Body() {
                     <option value='Office'>Office</option>
                 </Select>
             </SpanF>
-            <S2 onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}>Search</S2>
+            <S2 onClick={() => {filter(dummy, search, date, loc, price, prop, setFiltered)}}><SearchIcon /></S2>
         </DivF>
         <Grid>
         {filtered.map(function(data){
             return (
-                <div>
-                    {data.price}
-                    {data.address}
-                    {data.location}
-                    {data.movein.getTime()}
-                    {data.type}
-                    {data.name}
-                    <img src={data.image} alt='#' width='50px'/>
-                </div>
+                <Card>
+                    <CardMedia
+                        component="img"
+                        alt="green iguana"
+                        height="140"
+                        image={data.image}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                        {data.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        {data.address}, {data.location}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        Move in after: {data.movein.getDate()}/{data.movein.getMonth() + 1}/{data.movein.getFullYear()}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        A {data.type} type property. Space left for a simple description of the property. 
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="large">${data.price}/Month</Button>
+                    </CardActions>
+                    </Card>
             )
         })}
         </Grid>
