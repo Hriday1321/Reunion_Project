@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const DivC = styled.div`
     display: flex;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
 `
 
 export const Side = styled.div`
